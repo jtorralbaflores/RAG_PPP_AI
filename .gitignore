@@ -1,6 +1,23 @@
-*.pyc
-.DS_Store
-backup
-chroma
+# --- Python / project ignores ---
+.venv/
 venv/
+env/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+*.sqlite
+.coverage
+.mypy_cache/
+.pytest_cache/
+.vscode/
+.idea/
 .env
+chroma/
+db/
+vectorstore/
+persist/
+data/raw/
+EOF
