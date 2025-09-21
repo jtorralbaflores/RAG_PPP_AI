@@ -1,7 +1,7 @@
 import argparse
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma 
 from langchain.prompts import ChatPromptTemplate
-from langchain_community.llms.ollama import Ollama
+from langchain_ollama import OllamaLLM 
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 import os
@@ -56,7 +56,7 @@ def query_rag(query_text: str):
     #response_text = model.predict(prompt)
 
     # Ollama model
-    model = Ollama(model="mistral")
+    model = OllamaLLM(model="mistral")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
