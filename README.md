@@ -4,15 +4,15 @@ This project is a simple **Retrieval-Augmented Generation (RAG)** pipeline.
 It combines a local document store with a language model to let you query PDFs and other text sources in natural language.
 
 ### How it works
-1. **Ingest documents** → PDFs/text files are split into chunks and embedded into a vector database (ChromaDB).  
-2. **Ask questions** → User queries are embedded and matched against the database.  
-3. **Generate answers** → The most relevant chunks are passed into a language model (via LangChain + Ollama/OpenAI) to produce a contextual response.
+1. **Define embeddings** → The embedding model is configured in `get_embedding_function.py`.  
+2. **Populate the database** → Run `populate_database.py` to process PDFs/text files from the `data/` folder, split them into chunks, create embeddings, and store them in a local Chroma database.  
+3. **Query the data** → Use `query_data.py` to embed a user question, retrieve the most relevant chunks, and pass them to a language model (via LangChain + Ollama/OpenAI) for a contextual response.
 
 ### Features
-- Easy document ingestion (drop PDFs into the data folder).  
-- Local vector store persistence with Chroma.  
-- Query interface (`query_data.py`) for asking natural language questions.  
-- Modular structure so you can swap embeddings/models as needed.
+- Drop PDFs into the `data/` folder and build your own searchable knowledge base.  
+- Local persistence with **ChromaDB** (fast + lightweight vector store).  
+- Modular design: swap out embeddings or language models easily.  
+- Command-line interface for querying your knowledge base.
 
 ### Usage
 ```bash
@@ -22,8 +22,8 @@ source .venv/bin/activate
 # install dependencies
 pip install -r requirements.txt  
 
-# ingest PDFs
-python ingest.py  
+# step 1: populate the database with your PDFs
+python populate_database.py  
 
-# query your data
+# step 2: query the data
 python query_data.py "What are the main rules mentioned in the PDFs?"
